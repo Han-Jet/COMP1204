@@ -8,4 +8,4 @@ echo "$a" | sed 's/[+,]//g'
 b=$(echo "$html" | grep '<span data-v-1e2a93af data-v-3ab42af2>Daily - Cases</span></div>' -A1 | cut -d ">" -f 1 | sed -n 2p | xargs)
 echo "$b" | sed 's/[+,]//g'
 c=$(echo "$html" | grep '<div class="chip bg-gray-300 px-2 font-semibold">' -A1 | cut -d ">" -f 1 | sed -n 2p | xargs)
-echo "$b" | sed 's/[+,]//g'
+echo "$c" | sed 's/[+]//g'

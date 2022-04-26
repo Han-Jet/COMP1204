@@ -7,5 +7,5 @@ a=$(echo "$html" | grep '<span class="font-bold text-xl lg:text-2xl" data-v-1e2a
 echo "$a" | sed 's/[+,]//g'
 b=$(echo "$html" | grep '<span data-v-1e2a93af data-v-3ab42af2>Daily - Cases</span></div>' -A1 | cut -d ">" -f 1 | sed -n 2p | xargs)
 echo "$b" | sed 's/[+,]//g'
-c=$(echo "$html" | grep '<div class="flex flex-col gap-1 items-center text-center text-sm tracking-tight">' -A1 | cut -d ">" -f 1 | sed -n 2p | xargs)
+c=$(echo "$html" | grep '<div class="chip bg-gray-300 px-2 font-semibold">+8</div>' -A1 | cut -d ">" -f 1 | sed -n 2p | xargs)
 echo "$c" | sed 's/[+]//g'

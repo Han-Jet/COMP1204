@@ -9,3 +9,5 @@ b=$(echo "$html" | grep '<span data-v-1e2a93af data-v-3ab42af2>Daily - Cases</sp
 echo "$b" | sed 's/[+]//g'
 c=$(echo "$html" | grep '<span data-v-1e2a93af data-v-3ab42af2>Daily - Tests</span>' -A1 | cut -d ">" -f 1 | sed -n 2p | xargs)
 echo "$c" | sed 's/[+]//g'
+d=$(echo "$html" | grep '<span data-v-1e2a93af data-v-3ab42af2>Positivity Rate</span>' -A1 | cut -d ">" -f 1 | sed -n 2p | xargs)
+echo "$d" | sed 's/[+]//g'

@@ -19,3 +19,5 @@ e=$(echo "$html" | grep "Deaths due to COVID" -A2 | tail -n 1 | xargs)
 echo "$e" | sed 's/[+]//g'
 
 clean_code '<span data-v-1e2a93af data-v-3ab42af2>Active - ICU</span>'
+
+clean_code '<span data-v-1e2a93af data-v-3ab42af2>Total - Cases</span>'

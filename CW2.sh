@@ -21,13 +21,12 @@ clean_code '<span data-v-1e2a93af data-v-3ab42af2>Positivity Rate</span>' 1
 positiveRate=$tempCode
 echo "$positiveRate"
 dailyDeath=$(echo "$html" | grep "Deaths due to COVID" -A2 | tail -n 1 | xargs)
-echo "$dailyDeath" | sed 's/[+%]//g'
+echo "$dailyDeath" | sed 's/[+]//g'
 clean_code '<span data-v-1e2a93af data-v-3ab42af2>Active - ICU</span>' 1
 activeICU=$tempCode
 echo "$activeICU"
 clean_code '<span data-v-1e2a93af data-v-3ab42af2>Total - Cases</span>' 1
 totalCase=$tempCode
 echo "$totalCase"
-clean_code '<div title="Wed Apr 27 2022 15:59:00 GMT+0000 (Coordinated Universal Time)" class="col-span-1 text-xs text-gray-500 text-right tracking-tighter leading-3" data-v-1e2a93af>' 2
-date=$tempCode
+date=$("$html" | grep 'Data as of' -A2 | tail -n 2 | head -n 1 | sed 's/[,]//g')
 echo "$date"

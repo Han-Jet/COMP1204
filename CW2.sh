@@ -28,5 +28,5 @@ echo "$activeICU"
 clean_code '<span data-v-1e2a93af data-v-3ab42af2>Total - Cases</span>' 1
 totalCase=$tempCode
 echo "$totalCase"
-date=$("$html" | grep 'Data as of' -A2 | tail -n 2 | head -n 1 | sed 's/[,]//g')
+date=$(echo "$html" | grep 'Data as of' -A2 | tail -n 2 | head -n 1 | sed 's/[,]//g')
 echo "$date"

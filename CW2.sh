@@ -14,8 +14,8 @@ clean_code() {
 }
 
 clean_code '<span class="font-bold text-xl lg:text-2xl" data-v-1e2a93af data-v-91d5f596>'
-a=$(clean_code '<span class="font-bold text-xl lg:text-2xl" data-v-1e2a93af data-v-91d5f596>')
-echo "$a"
+#a=$(clean_code '<span class="font-bold text-xl lg:text-2xl" data-v-1e2a93af data-v-91d5f596>')
+#echo "$a"
 clean_code '<span data-v-1e2a93af data-v-3ab42af2>Daily - Cases</span></div>'
 b=$(clean_code '<span data-v-1e2a93af data-v-3ab42af2>Daily - Cases</span></div>')
 echo "$b"

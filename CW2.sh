@@ -28,3 +28,6 @@ echo "$activeICU"
 clean_code '<span data-v-1e2a93af data-v-3ab42af2>Total - Cases</span>'
 totalCase=$tempCode
 echo "$totalCase"
+clean_code '<div title="Wed Apr 27 2022 15:59:00 GMT+0000 (Coordinated Universal Time)" class="col-span-1 text-xs text-gray-500 text-right tracking-tighter leading-3" data-v-1e2a93af>'
+date=$tempCode
+echo "$date"

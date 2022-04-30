@@ -51,7 +51,7 @@ firstDose=$tempCode
 echo "$firstDose" | sed 's/%//g'
 clean_code '<span class="leading-4" data-v-1e2a93af data-v-91d5f596>2 Doses</span>' 1
 secondDose=$tempCode
-echo "$secondDose"
+echo "$secondDose" | sed 's/%//g'
 clean_code '<span class="leading-4" data-v-1e2a93af data-v-91d5f596>Booster</span>' 1
 booster=$tempCode
-echo "$booster"
+echo "$booster" | sed 's/%//g'

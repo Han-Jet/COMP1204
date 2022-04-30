@@ -33,5 +33,5 @@ echo "$date"
 clean_code '<span data-v-1e2a93af data-v-3ab42af2>Total - Deaths</span>' 1
 totalDeaths=$tempCode
 echo "$totalDeaths"
-activeCases=$(echo "$html" \ grep "Active Cases" -A2 | tail -n 1 | xargs)
+activeCases=$(echo "$html" | grep "Active Cases" -A2 | tail -n 1 | xargs)
 echo "$activeCases" | sed 's/[,]//g'

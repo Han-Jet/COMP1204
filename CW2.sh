@@ -39,5 +39,6 @@ echo "$totalDeaths"
 clean_code '<div class="bg-blue-100 px-2 m-auto">' 1
 activeCases=$tempCode
 echo "$activeCases"
-dailyHospital=$(echo "$html" | grep "Daily - Admissions" -A2 | tail -n 1 | xargs)
-echo "$dailyHospital"
+clean code '<span data-v-1e2a93af data-v-3ab42af2>Utilisation (COVID)</span>' 1
+hospitalUtilise=$tempCode
+echo "$hospitalUtilise'

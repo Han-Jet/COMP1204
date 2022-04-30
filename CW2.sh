@@ -25,6 +25,9 @@ echo "$dailyDeath" | sed 's/[+]//g'
 clean_code '<span data-v-1e2a93af data-v-3ab42af2>Active - ICU</span>' 1
 activeICU=$tempCode
 echo "$activeICU"
+clean code '<span data-v-1e2a93af data-v-3ab42af2>Utilisation (COVID)</span>'
+icuUtilisation=$tempCode
+echo "$icuUtilisation"
 clean_code '<span data-v-1e2a93af data-v-3ab42af2>Total - Cases</span>' 1
 totalCase=$tempCode
 echo "$totalCase"

@@ -45,4 +45,4 @@ clean_code '<span data-v-1e2a93af data-v-3ab42af2>Total - BID</span>' 1
 totalBid=$tempCode
 echo "$totalBid"
 totalVaccine=$(echo "$html" | grep "Total - Administered" -A2 | tail -n 1 | xargs)
-echo "$totalVaccine"
+echo "$totalVaccine" | sed 's/[,]//g'

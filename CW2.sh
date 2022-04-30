@@ -19,7 +19,7 @@ dailyTests=$tempCode
 echo "$dailyTests"
 clean_code '<span data-v-1e2a93af data-v-3ab42af2>Positivity Rate</span>' 1
 positiveRate=$tempCode
-echo "$positiveRate"
+echo "$positiveRate" | sed 's/%//g'
 dailyDeath=$(echo "$html" | grep "Deaths due to COVID" -A2 | tail -n 1 | xargs)
 echo "$dailyDeath" | sed 's/[+]//g'
 clean_code '<span data-v-1e2a93af data-v-3ab42af2>Active - ICU</span>' 1

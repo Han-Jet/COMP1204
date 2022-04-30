@@ -39,6 +39,6 @@ echo "$totalDeaths"
 clean_code '<div class="bg-blue-100 px-2 m-auto">' 1
 activeCases=$tempCode
 echo "$activeCases"
-clean_code '<span data-v-1e2a93af data-v-3ab42af2>Daily - Admissions</span>' 1
-hospitalUtilise=$tempCode
-echo "$hospitalUtilise"
+clean_code '<span data-v-1e2a93af data-v-3ab42af2>Total - BID</span>' 1
+bid=$tempCode
+echo "$bid"

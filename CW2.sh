@@ -30,6 +30,6 @@ totalCase=$tempCode
 echo "$totalCase"
 date=$(echo "$html" | grep 'Data as of' -A2 | tail -n 2 | head -n 1 | sed 's/[,]//g' | xargs)
 echo "$date"
-clean code '<span data-v-1e2a93af data-v-3ab42af2>Total - Deaths</span>' 1
+clean_code '<span data-v-1e2a93af data-v-3ab42af2>Total - Deaths</span>' 1
 totalDeaths=$tempCode
 echo "$totalDeaths"

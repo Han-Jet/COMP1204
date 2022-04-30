@@ -41,5 +41,6 @@ activeCases=$tempCode
 echo "$activeCases"
 dailyHospital=$(echo "$html" | grep "Daily - Admissions" -A2 | tail -n 1 | xargs)
 echo "$dailyHospital"
-bid=$(echo "$html" | grep "Brought in Dead" -A2 | tail -n 1 | xargs)
-echo "$bid" | sed 's/[+]//g'
+clean_code '<span data-v-1e2a93af data-v-3ab42af2>Total - BID</span>' 1
+totalBid=$tempCode
+echo "$totalBid"

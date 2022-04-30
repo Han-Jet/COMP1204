@@ -41,6 +41,5 @@ activeCases=$tempCode
 echo "$activeCases"
 dailyHospital=$(echo "$html" | grep "Daily - Admissions" -A2 | tail -n 1 | xargs)
 echo "$dailyHospital"
-clean_code '<span data-v-1e2a93af data-v-3ab42af2>Utilisation (COVID)</span>' 1
-hospitalUtilisation=$tempCode
-echo "$hospitalUtilisation" | sed 's/%//g'
+bid=$(echo "$html" | grep "Brought in Dead" -A2 | tail -n 1 | xargs)
+echo "$bid" | sed 's/[+]//g'

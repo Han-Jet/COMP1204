@@ -48,4 +48,10 @@ totalVaccine=$(echo "$html" | grep "Total - Administered" -A2 | tail -n 1 | xarg
 echo "$totalVaccine" | sed 's/[,]//g'
 clean_code '<span class="leading-4" data-v-1e2a93af data-v-91d5f596>At Least 1 Dose</span>' 1
 firstDose=$tempCode
-echo "$firstDose"
+echo "$firstDose" | sed 's/%//g'
+clean_code '<span class="leading-4" data-v-1e2a93af data-v-91d5f596>2 Doses</span>' 1
+secondDose=$tempCode
+echo "$secondDose"
+clean_code '<span class="leading-4" data-v-1e2a93af data-v-91d5f596>Booster</span>' 1
+booster=$tempCode
+echo "$booster"

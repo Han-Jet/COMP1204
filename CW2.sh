@@ -28,7 +28,7 @@ echo "$activeICU"
 clean_code '<span data-v-1e2a93af data-v-3ab42af2>Utilisation (COVID)</span>' 1
 icuUtilisation=$tempCode
 echo "$icuUtilisation" | sed 's/%//g'
-dailyHospital=$(echo "$html" | grep 'Daily - Admissions' | sed 's/[,]//g' | xargs)
+dailyHospital=$(echo "$html" | grep "Daily - Admissions" -A2 | tail -n 1 | xargs)
 echo "$dailyHospital"
 clean_code '<span data-v-1e2a93af data-v-3ab42af2>Total - Cases</span>' 1
 totalCase=$tempCode

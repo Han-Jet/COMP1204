@@ -41,9 +41,10 @@ activeCases=$tempCode
 echo "$activeCases"
 dailyHospital=$(echo "$html" | grep "Daily - Admissions" -A2 | tail -n 1 | xargs)
 echo "$dailyHospital"
-clean_code '<span data-v-1e2a93af data-v-3ab42af2>Total - BID</span>' 1
-totalBid=$tempCode
-echo "$totalBid"
+dailyBid=$(echo "$html" | grep "Brought in Dead" -A8 | tail -n 1 | xargs)
+echo "$dailyBid" | sed 's/[,]//g'
+totalBid=$(echo "$html" | grep "Brought in Dead" -A4 | tail -n 1 | xargs)
+echo "$totalBid" | sed 's/[+]//g'
 totalVaccine=$(echo "$html" | grep "Total - Administered" -A2 | tail -n 1 | xargs)
 echo "$totalVaccine" | sed 's/[,]//g'
 clean_code '<span class="leading-4" data-v-1e2a93af data-v-91d5f596>At Least 1 Dose</span>' 1

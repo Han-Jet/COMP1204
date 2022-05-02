@@ -41,9 +41,9 @@ echo "dailyHospital: $dailyHospital"
 activeVent=$(echo "$html" | grep "COVID-19 Patients Ventilated" -A4 | tail -n 1 | xargs)
 echo "activeVent: $activeVent"
 dailyBid=$(echo "$html" | grep "Brought in Dead" -A8 | tail -n 1 | sed 's/[+]//g' | xargs)
-echo "dailyBid: $dailyBid" | sed 's/[+]//g'
-totalBid=$(echo "$html" | grep "Brought in Dead" -A4 | tail -n 1 | xargs)
-echo "totalBid: $totalBid" | sed 's/[,]//g'
+echo "dailyBid: $dailyBid"
+totalBid=$(echo "$html" | grep "Brought in Dead" -A4 | tail -n 1 | sed 's/[,]//g' | xargs)
+echo "totalBid: $totalBid" 
 totalVaccine=$(echo "$html" | grep "Total - Administered" -A2 | tail -n 1 | xargs)
 echo "totalVaccine: $totalVaccine" | sed 's/[,]//g'
 clean_code '<span class="leading-4" data-v-1e2a93af data-v-91d5f596>At Least 1 Dose</span>' 1

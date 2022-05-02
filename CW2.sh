@@ -68,7 +68,7 @@ table4="death"
 	USE $db;\
 	CREATE TABLE IF NOT EXISTS $table1 (\
 		case_id int NOT NULL AUTO_INCREMENT,\
-		date varchar(20),\
+		date char(20),\
 		new_cases int,\
 		total_cases int,\
 		daily_tests int,\
@@ -80,7 +80,7 @@ table4="death"
 	
 	CREATE TABLE IF NOT EXISTS $table2 (\
 		vac_id int NOT NULL AUTO_INCREMENT,\
-		date varchar(20),\
+		date char(20),\
 		daily_administered int,\
 		total_administered int,\
 		first_dose float,\
@@ -92,7 +92,7 @@ table4="death"
 	
 	CREATE TABLE IF NOT EXISTS $table3 (\
 		health_id int NOT NULL AUTO_INCREMENT,\
-		date varchar(20),\
+		date char(20),\
 		active_ventilators int,\
 		vent_utilisation int,\
 		active_icu int,\
@@ -105,7 +105,7 @@ table4="death"
 		
 	CREATE TABLE IF NOT EXISTS $table4 (\
 		death_id int NOT NULL AUTO_INCREMENT,\
-		date varchar(20),\
+		date char(20),\
 		daily_death int,\
 		total_death int,\
 		dail_bid int,\
@@ -114,8 +114,8 @@ table4="death"
 		PRIMARY KEY (death_id)\
 	);\
 	
-	INSERT INTO $table1 (case_id, date, new_cases, total_cases, daily_tests, positivity_rate, active_cases, updated_time)
-	VALUES (001, '$date', $dailyCases, $totalCase, $dailyTests, '$positiveRate', $activeCases, NOW());\
+	#INSERT INTO $table1 (case_id, date, new_cases, total_cases, daily_tests, positivity_rate, active_cases, updated_time)
+	#VALUES (001, '$date', $dailyCases, $totalCase, $dailyTests, '$positiveRate', $activeCases, NOW());\
 	
 	SELECT * FROM $table1;\
 	SELECT * FROM $table2;\

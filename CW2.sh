@@ -114,7 +114,7 @@ table4="death"
 	VALUES ('$date', $dailyCases, $totalCase, $dailyTests, '$positiveRate', $activeCases, NOW());\
 	
 	INSERT INTO $table2 (date, daily_admistered, total_administered, first_dose, two_doses, booster, updated_time)
-	VALUES ('$date", $dailyVaccine, $totalVaccine, '$firstDose', '$secondDose', '$booster', NOW());\
+	VALUES ('$date', $dailyVaccine, $totalVaccine, '$firstDose', '$secondDose', '$booster', NOW());\
 	
 	INSERT INTO $table3 (date, active_ventilators, active_icu, dailyhosp_admission, updated_time)
 	VALUES ('$date', $activeVent, $activeICU, $dailyHospital, NOW());\

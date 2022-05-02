@@ -68,7 +68,7 @@ table4="death"
 	USE $db;\
 	CREATE TABLE IF NOT EXISTS $table1 (\
 		case_id int NOT NULL AUTO_INCREMENT,\
-		date DATE,\
+		date varchar(20),\
 		new_cases int,\
 		total_cases int,\
 		daily_tests int,\

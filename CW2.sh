@@ -114,9 +114,10 @@ table4="death"
 		PRIMARY KEY (death_id)\
 	);\
 	
-
-	INSERT INTO $table2 (date, daily_administered, total_administered, first_dose, two_doses, booster, updated_time)
-	VALUES ('$date', $dailyVaccine, $totalVaccine, '$firstDose', '$secondDose', '$booster', NOW());\
+	INSERT INTO $table1 (date, new_cases, total_cases, daily_tests, positivity_rate, active_cases, updated_time)
+	VALUES ('$date', $dailyCases, $totalCase, $dailyTests, '$positiveRate', $activeCases, NOW());\
+	INSERT INTO $table2 (vac_id, date, daily_administered, total_administered, first_dose, two_doses, booster, updated_time)
+	VALUES (001, '$date', $dailyVaccine, $totalVaccine, '$firstDose', '$secondDose', '$booster', NOW());\
 	SELECT * FROM $table1;\
 	SELECT * FROM $table2;\
 	SELECT * FROM $table3;\

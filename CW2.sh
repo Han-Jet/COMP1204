@@ -72,7 +72,7 @@ table4="death"
 		new_cases int,\
 		total_cases int,\
 		daily_tests int,\
-		positivity_rate decimal(1,1) DEFAULT NULL,\
+		positivity_rate double,\
 		active_cases int,\
 		updated_time datetime,\
 		PRIMARY KEY (case_id)\

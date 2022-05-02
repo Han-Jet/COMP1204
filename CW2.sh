@@ -44,17 +44,17 @@ dailyBid=$(echo "$html" | grep "Brought in Dead" -A8 | tail -n 1 | sed 's/[+]//g
 echo "dailyBid: $dailyBid"
 totalBid=$(echo "$html" | grep "Brought in Dead" -A4 | tail -n 1 | sed 's/[,]//g' | xargs)
 echo "totalBid: $totalBid" 
-totalVaccine=$(echo "$html" | grep "Total - Administered" -A2 | tail -n 1 | xargs)
-echo "totalVaccine: $totalVaccine" | sed 's/[,]//g'
+totalVaccine=$(echo "$html" | grep "Total - Administered" -A2 | tail -n 1 | sed 's/[,]//g' | xargs)
+echo "totalVaccine: $totalVaccine"
 clean_code '<span class="leading-4" data-v-1e2a93af data-v-91d5f596>At Least 1 Dose</span>' 1
-firstDose=$tempCode
-echo "firstDose: $firstDose" | sed 's/%//g'
+firstDose=$(echo "$tempCode" | sed 's/%//g')
+echo "firstDose: $firstDose"
 clean_code '<span class="leading-4" data-v-1e2a93af data-v-91d5f596>2 Doses</span>' 1
-secondDose=$tempCode
-echo "secondDose: $secondDose" | sed 's/%//g'
+secondDose=$(echo "$tempCode" | sed 's/%//g')
+echo "secondDose: $secondDose"
 clean_code '<span class="leading-4" data-v-1e2a93af data-v-91d5f596>Booster</span>' 1
-booster=$tempCode
-echo "booster: $booster" | sed 's/%//g'
+booster=$(echo "$tempCode" | sed 's/%//g')
+echo "booster: $booster"
 #Create table script
 db="covidnow"
 table1="cases"
@@ -112,6 +112,9 @@ table4="death"
 	
 	INSERT INTO $table1 (date, new_cases, total_cases, daily_tests, positivity_rate, active_cases, updated_time)
 	VALUES ('$date', $dailyCases, $totalCase, $dailyTests, '$positiveRate', $activeCases, NOW());\
+	
+	INSERT INTO $table2 (date, daily_admistered, total_administered, first_dose, two_doses, booster, updated_time)
+	VALUES ('$date", $dailyVaccine, $totalVaccine, '$firstDose', '$secondDose', '$booster', NOW());\
 	
 	INSERT INTO $table3 (date, active_ventilators, active_icu, dailyhosp_admission, updated_time)
 	VALUES ('$date', $activeVent, $activeICU, $dailyHospital, NOW());\

@@ -62,6 +62,7 @@ table1="cases"
 table2="vaccination"
 table3="healthcare"
 table4="death"
+rate="6.7"
 
 /opt/lampp/bin/mysql -u root -e "\
 	CREATE DATABASE IF NOT EXISTS $db;\
@@ -115,7 +116,7 @@ table4="death"
 	);\
 	
 	INSERT INTO $table1 (case_id, date, new_cases, total_cases, daily_tests, positivity_rate, active_cases, updated_time)\
-	VALUES (003, '$date', $dailyCases, $totalCase, $dailyTests, 'Positive', $activeCases, NOW());\
+	VALUES (003, '$date', $dailyCases, $totalCase, $dailyTests, $rate, $activeCases, NOW());\
 	
 	SELECT * FROM $table1;\
 	SELECT * FROM $table2;\

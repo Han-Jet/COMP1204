@@ -17,9 +17,8 @@ echo "$dailyCases"
 clean_code '<span data-v-1e2a93af data-v-3ab42af2>Daily - Tests</span>' 1
 dailyTests=$tempCode
 echo "$dailyTests"
-clean_code '<span data-v-1e2a93af data-v-3ab42af2>Positivity Rate</span>' 1
-positiveRate=$tempCode
-echo "$positiveRate" | sed 's/%//g'
+recoverCases=$(echo "$html" | grep "Recovered" -A4 | tail -n 1 | xargs)
+echo "$recoverCases" | sed 's/[,]//g'
 dailyDeath=$(echo "$html" | grep "Deaths due to COVID" -A2 | tail -n 1 | xargs)
 echo "$dailyDeath" | sed 's/[+]//g'
 clean_code '<span data-v-1e2a93af data-v-3ab42af2>Active - ICU</span>' 1
@@ -80,7 +79,7 @@ table4="death"
 	
 	CREATE TABLE IF NOT EXISTS $table2 (\
 		vac_id int NOT NULL AUTO_INCREMENT,\
-		date char(20),\
+		date varchar(20),\
 		daily_administered int,\
 		total_administered int,\
 		first_dose DECIMAL(4,2),\
@@ -92,7 +91,7 @@ table4="death"
 	
 	CREATE TABLE IF NOT EXISTS $table3 (\
 		health_id int NOT NULL AUTO_INCREMENT,\
-		date char(20),\
+		date varchar(20),\
 		active_ventilators int,\
 		vent_utilisation int,\
 		active_icu int,\
@@ -105,7 +104,7 @@ table4="death"
 		
 	CREATE TABLE IF NOT EXISTS $table4 (\
 		death_id int NOT NULL AUTO_INCREMENT,\
-		date char(20),\
+		date varchar(20),\
 		daily_death int,\
 		total_death int,\
 		dail_bid int,\
@@ -114,8 +113,8 @@ table4="death"
 		PRIMARY KEY (death_id)\
 	);\
 	
-	INSERT INTO $table1 (case_id, date, new_cases, total_cases, daily_tests, positivity_rate, active_cases, updated_time)\
-	VALUES (003, '$date', $dailyCases, $totalCase, $dailyTests, $positiveRate, $activeCases, NOW());\
+	INSERT INTO $table1 (case_id, date, new_cases, total_cases, daily_tests, active_cases, recovered updated_time)\
+	VALUES (003, '$date', $dailyCases, $totalCase, $dailyTests, $positiveRate, $activeCases, $recoverCases, NOW());\
 	
 	SELECT * FROM $table1;\
 	SELECT * FROM $table2;\

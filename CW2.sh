@@ -58,72 +58,63 @@ booster=$tempCode
 echo "$booster" | sed 's/%//g'
 #Create table script
 db="covidnow"
-
-/opt/lampp/bin/mysql -u root<<EOF
-	CREATE DATABASE IF NOT EXISTS $db;
-	USE $db;
-
-/opt/lampp/bin/mysql -u root -e "CREATE DATABASE IF NOT EXISTS $db; USE $db"
-
-/opt/lampp/bin/mysql -u root -e "\
-CREATE DATABASE IF NOT EXISTS $db;\
-USE $db"
 table1="cases"
 table2="vaccination"
 table3="healthcare"
 table4="death"
 
-	CREATE TABLE IF NOT EXISTS $table1 (
-		case_id int NOT NULL AUTO_INCREMENT,
-		date DATE,
-		new_cases int,
-		total_cases int,
-		daily_tests int,
-		positivity_rate float,
-		active_cases int,
-		updated_time datetime,
-		PRIMARY KEY (case_id)
-	);
+/opt/lampp/bin/mysql -u root -e "\
+	CREATE DATABASE IF NOT EXISTS $db;\
+	USE $db;\
+	CREATE TABLE IF NOT EXISTS $table1 (\
+		case_id int NOT NULL AUTO_INCREMENT,\
+		date DATE,\
+		new_cases int,\
+		total_cases int,\
+		daily_tests int,\
+		positivity_rate float,\
+		active_cases int,\
+		updated_time datetime,\
+		PRIMARY KEY (case_id)\
+	);\
 	
-	CREATE TABLE IF NOT EXISTS $table2 (
-		vac_id int NOT NULL AUTO_INCREMENT,
-		date DATE,
-		daily_administered int,
-		total_administered int,
-		1 dose float,
-		2 doses float,
-		booster float,
-		updated_time datetime,
-		PRIMARY KEY (vac_id)
-	);
+	CREATE TABLE IF NOT EXISTS $table2 (\
+		vac_id int NOT NULL AUTO_INCREMENT,\
+		date DATE,\
+		daily_administered int,\
+		total_administered int,\
+		1 dose float,\
+		2 doses float,\
+		booster float,\
+		updated_time datetime,\
+		PRIMARY KEY (vac_id)\
+	);\
 	
-	CREATE TABLE IF NOT EXISTS $table3 (
-		health_id int NOT NULL AUTO_INCREMENT,
-		date DATE,
-		active_ventilators int,
-		vent_utilisation int,
-		active_icu int,
-		icu_utilise int,
-		dailyhosp_admission int,
-		hosp_utlisation int,
-		updated_time datetime,
-		PRIMARY KEY (health_id)
-	);
+	CREATE TABLE IF NOT EXISTS $table3 (\
+		health_id int NOT NULL AUTO_INCREMENT,\
+		date DATE,\
+		active_ventilators int,\
+		vent_utilisation int,\
+		active_icu int,\
+		icu_utilise int,\
+		dailyhosp_admission int,\
+		hosp_utlisation int,\
+		updated_time datetime,\
+		PRIMARY KEY (health_id)\
+	);\
 		
-	CREATE TABLE IF NOT EXISTS $table4 (
-		death_id int NOT NULL AUTO_INCREMENT,
-		date DATE,
-		daily_death int,
-		total_death int,
-		dail_bid int,
-		total_bid int,
-		updated_time datetime,
-		PRIMARY KEY (death_id)
-	);
-		
-	USE $db;
-	SELECT * FROM $table1;
-	SELECT * FROM $table2;
-	SELECT * FROM $table3;
-	SELECT * FROM $table4;
-EOF
+	CREATE TABLE IF NOT EXISTS $table4 (\
+		death_id int NOT NULL AUTO_INCREMENT,\
+		date DATE,\
+		daily_death int,\
+		total_death int,\
+		dail_bid int,\
+		total_bid int,\
+		updated_time datetime,\
+		PRIMARY KEY (death_id)\
+	);\	
+	SELECT * FROM $table1;\
+	SELECT * FROM $table2;\
+	SELECT * FROM $table3;\
+	SELECT * FROM $table4;\
+"

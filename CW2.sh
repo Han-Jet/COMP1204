@@ -83,8 +83,8 @@ table4="death"
 		date DATE,\
 		daily_administered int,\
 		total_administered int,\
-		'1 dose' float,\
-		'2 doses' float,\
+		first_dose float,\
+		two_doses float,\
 		booster float,\
 		updated_time datetime,\
 		PRIMARY KEY (vac_id)\

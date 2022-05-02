@@ -115,7 +115,7 @@ table4="death"
 	);\
 	
 	INSERT INTO $table1 (case_id, date, new_cases, total_cases, daily_tests, active_cases, updated_time)\
-	VALUES (001, '$date', $dailyCases, $totalCase, $dailyTests, $activeCases, NOW());\
+	VALUES (002, '$date', $dailyCases, $totalCase, $dailyTests, $activeCases, NOW());\
 	
 	SELECT * FROM $table1;\
 	SELECT * FROM $table2;\

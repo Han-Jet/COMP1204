@@ -116,7 +116,7 @@ table4="death"
 	INSERT INTO $table3 (date, active_ventilators, active_icu, dailyhosp_admission, updated_time)
 	VALUES ('$date', $activeVent, $activeICU, $dailyHospital, NOW());\
 	
-	INSERT INTO $table4 (date, daily_death, total_death, daily_bid, total_bid, updated-time)
+	INSERT INTO $table4 (date, daily_death, total_death, daily_bid, total_bid, updated_time)
 	VALUES ('$date', $dailyDeath, $totalDeaths, $dailyBid, $totalBid, NOW());\
 	
 	SELECT * FROM $table1;\

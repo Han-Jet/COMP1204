@@ -25,9 +25,6 @@ echo "dailyDeath: $dailyDeath" | sed 's/[+]//g'
 clean_code '<span data-v-1e2a93af data-v-3ab42af2>Active - ICU</span>' 1
 activeICU=$tempCode
 echo "activeICU: $activeICU"
-clean_code '<span data-v-1e2a93af data-v-3ab42af2>Utilisation (COVID)</span>' 1
-icuUtilisation=$tempCode
-echo "icuUtilisation: $icuUtilisation" | sed 's/%//g'
 clean_code '<span data-v-1e2a93af data-v-3ab42af2>Total - Cases</span>' 1
 totalCase=$tempCode
 echo "totalCase: $totalCase"
@@ -41,11 +38,14 @@ activeCases=$tempCode
 echo "activeCases: $activeCases"
 dailyHospital=$(echo "$html" | grep "Daily - Admissions" -A2 | tail -n 1 | xargs)
 echo "dailyHospital: $dailyHospital"
+clean_code '<span data-v-1e2a93af data-v-3ab42af2>Active - Ventilated</span>' 1
+activeVent=$tempcode
+echo "activeVent: $activeVent"
 dailyBid=$(echo "$html" | grep "Brought in Dead" -A8 | tail -n 1 | xargs)
 echo "dailyBid: $dailyBid" | sed 's/[+]//g'
 totalBid=$(echo "$html" | grep "Brought in Dead" -A4 | tail -n 1 | xargs)
 echo "totalBid: $totalBid" | sed 's/[,]//g'
-totalVaccine=$(echo "$html" | grep "Total - Administered" -A2 | cut -d ">" -f 1 | tail -n 1 | xargs)
+totalVaccine=$(echo "$html" | grep "Total - Administered" -A2 | tail -n 1 | xargs)
 echo "totalVaccine: $totalVaccine" | sed 's/[,]//g'
 clean_code '<span class="leading-4" data-v-1e2a93af data-v-91d5f596>At Least 1 Dose</span>' 1
 firstDose=$tempCode
@@ -94,11 +94,8 @@ table4="death"
 		health_id int NOT NULL AUTO_INCREMENT,\
 		date varchar(20),\
 		active_ventilators int,\
-		vent_utilisation int,\
 		active_icu int,\
-		icu_utilise int,\
 		dailyhosp_admission int,\
-		hosp_utlisation int,\
 		updated_time datetime,\
 		PRIMARY KEY (health_id)\
 	);\
@@ -116,8 +113,10 @@ table4="death"
 	
 	INSERT INTO $table1 (date, new_cases, total_cases, daily_tests, positivity_rate, active_cases, updated_time)
 	VALUES ('$date', $dailyCases, $totalCase, $dailyTests, '$positiveRate', $activeCases, NOW());\
-	INSERT INTO $table2 (vac_id, date, daily_administered, total_administered, first_dose, two_doses, booster, updated_time)
-	VALUES (001, '$date', $dailyVaccine, $totalVaccine, '$firstDose', '$secondDose', '$booster', NOW());\
+	
+	INSERT INTO $table3 (date, active_ventilators, active_icu, dailyhosp_admission, updated_time)
+	VALUES ('$date', $activeVent, $activeICU, $dailyHospital, NOW());\
+	
 	SELECT * FROM $table1;\
 	SELECT * FROM $table2;\
 	SELECT * FROM $table3;\

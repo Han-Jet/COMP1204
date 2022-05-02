@@ -114,8 +114,8 @@ table4="death"
 		PRIMARY KEY (death_id)\
 	);\
 	
-	INSERT INTO $table1 (case_id, date, new_cases, total_cases, daily_tests, positivity_rate, active_cases, updated_time)\
-	VALUES (001, '1 May 2022', 1503, 4449507, 39041, 6.7, 41167, NOW());\
+	INSERT INTO $table1 (case_id, date, new_cases, total_cases, daily_tests, active_cases, updated_time)\
+	VALUES (001, '$date', $dailyCases, $totalCase, $dailyTests, $activeCases, NOW());\
 	
 	SELECT * FROM $table1;\
 	SELECT * FROM $table2;\

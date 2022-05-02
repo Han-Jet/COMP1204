@@ -71,7 +71,7 @@ table4="death"
 		new_cases int,\
 		total_cases int,\
 		daily_tests int,\
-		positivity_rate decimal(10,2),\
+		positive_rate decimal(10,2),\
 		active_cases int,\
 		updated_time datetime,\
 		PRIMARY KEY (case_id)\
@@ -80,8 +80,8 @@ table4="death"
 	CREATE TABLE IF NOT EXISTS $table2 (\
 		vac_id int NOT NULL AUTO_INCREMENT,\
 		date varchar(20),\
-		daily_administered int,\
-		total_administered int,\
+		daily_vax int,\
+		total_vax int,\
 		first_dose decimal(10,2),\
 		two_doses decimal(10,2),\
 		booster decimal(10,2),\
@@ -110,10 +110,10 @@ table4="death"
 		PRIMARY KEY (death_id)\
 	);\
 	
-	INSERT INTO $table1 (date, new_cases, total_cases, daily_tests, positivity_rate, active_cases, updated_time)
+	INSERT INTO $table1 (date, new_cases, total_cases, daily_tests, positive_rate, active_cases, updated_time)
 	VALUES ('$date', $dailyCases, $totalCase, $dailyTests, '$positiveRate', $activeCases, NOW());\
 	
-	INSERT INTO $table2 (date, daily_administered, total_administered, first_dose, two_doses, booster, updated_time)
+	INSERT INTO $table2 (date, daily_vax, total_vax, first_dose, two_doses, booster, updated_time)
 	VALUES ('$date', $dailyVaccine, $totalVaccine, '$firstDose', '$secondDose', '$booster', NOW());\
 	
 	INSERT INTO $table3 (date, active_ventilators, active_icu, dailyhosp_admission, updated_time)

@@ -20,8 +20,8 @@ echo "dailyTests: $dailyTests"
 clean_code '<span data-v-1e2a93af data-v-3ab42af2>Positivity Rate</span>' 1
 positiveRate=$(echo "$tempCode" | sed 's/%//g')
 echo "positiveRate: $positiveRate"
-dailyDeath=$(echo "$html" | grep "Deaths due to COVID" -A2 | tail -n 1 | xargs)
-echo "dailyDeath: $dailyDeath" | sed 's/[+]//g'
+dailyDeath=$(echo "$html" | grep "Deaths due to COVID" -A2 | sed 's/[+]//g' | tail -n 1 | xargs)
+echo "dailyDeath: $dailyDeath"
 clean_code '<span data-v-1e2a93af data-v-3ab42af2>Active - ICU</span>' 1
 activeICU=$tempCode
 echo "activeICU: $activeICU"
@@ -40,7 +40,7 @@ dailyHospital=$(echo "$html" | grep "Daily - Admissions" -A2 | tail -n 1 | xargs
 echo "dailyHospital: $dailyHospital"
 activeVent=$(echo "$html" | grep "COVID-19 Patients Ventilated" -A4 | tail -n 1 | xargs)
 echo "activeVent: $activeVent"
-dailyBid=$(echo "$html" | grep "Brought in Dead" -A8 | tail -n 1 | xargs)
+dailyBid=$(echo "$html" | grep "Brought in Dead" -A8 | tail -n 1 | sed 's/[+]//g' | xargs)
 echo "dailyBid: $dailyBid" | sed 's/[+]//g'
 totalBid=$(echo "$html" | grep "Brought in Dead" -A4 | tail -n 1 | xargs)
 echo "totalBid: $totalBid" | sed 's/[,]//g'

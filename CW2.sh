@@ -72,7 +72,7 @@ table4="death"
 		new_cases int,\
 		total_cases int,\
 		daily_tests int,\
-		positivity_rate float,\
+		positivity_rate DECIMAL(4,2),\
 		active_cases int,\
 		updated_time datetime,\
 		PRIMARY KEY (case_id)\
@@ -83,9 +83,9 @@ table4="death"
 		date char(20),\
 		daily_administered int,\
 		total_administered int,\
-		first_dose float,\
-		two_doses float,\
-		booster float,\
+		first_dose DECIMAL(4,2),\
+		two_doses DECIMAL(4,2),\
+		booster DECIMAL(4,2),\
 		updated_time datetime,\
 		PRIMARY KEY (vac_id)\
 	);\

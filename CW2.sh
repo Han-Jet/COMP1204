@@ -104,7 +104,7 @@ table4="death"
 		date varchar(20),\
 		daily_death int,\
 		total_death int,\
-		dail_bid int,\
+		daily_bid int,\
 		total_bid int,\
 		updated_time datetime,\
 		PRIMARY KEY (death_id)\

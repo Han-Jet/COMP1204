@@ -92,7 +92,7 @@ table4="death"
 	
 	CREATE TABLE IF NOT EXISTS $table3 (\
 		health_id int NOT NULL AUTO_INCREMENT,\
-		date char(20),\
+		date varchar(20),\
 		active_ventilators int,\
 		vent_utilisation int,\
 		active_icu int,\

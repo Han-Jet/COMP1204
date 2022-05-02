@@ -114,7 +114,7 @@ table4="death"
 		PRIMARY KEY (death_id)\
 	);\
 	
-	INSERT INTO $table1 (date, new_cases, total_cases, daily_tests, positivity_rate(%), active_cases, updated_time)
+	INSERT INTO $table1 (date, new_cases, total_cases, daily_tests, positivity_rate, active_cases, updated_time)
 	VALUES ('$date', $dailyCases, $totalCase, $dailyTests, '$positiveRate', $activeCases, NOW());\
 	
 	SELECT * FROM $table1;\

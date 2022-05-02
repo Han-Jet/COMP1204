@@ -62,10 +62,37 @@ db="covidnow"
 /opt/lampp/bin/mysql -u root<<EOF
 	CREATE DATABASE IF NOT EXISTS $db;
 	USE $db;
-EOF
 
 /opt/lampp/bin/mysql -u root -e "CREATE DATABASE IF NOT EXISTS $db; USE $db"
 
 /opt/lampp/bin/mysql -u root -e "\
 CREATE DATABASE IF NOT EXISTS $db;\
 USE $db"
+table1="cases"
+table2="vaccination"
+table3="healthcare"
+table4="death"
+
+	CREATE TABLE IF NOT EXISTS $table1;
+	CREATE TABLE IF NOT EXISTS $table2;
+	CREATE TABLE IF NOT EXISTS $table3;
+	CREATE TABLE IF NOT EXISTS $table4;
+	USE $table1;
+	USE $table2;
+	USE $table3;
+	USE $table4;
+EOF
+/opt/lampp/bin/mysql -u root -e "CREATE TABLE IF NOT EXISTS $table1; USE $table1"
+/opt/lampp/bin/mysql -u root -e "CREATE TABLE IF NOT EXISTS $table2; USE $table2"
+/opt/lampp/bin/mysql -u root -e "CREATE TABLE IF NOT EXISTS $table3; USE $table3"
+/opt/lampp/bin/mysql -u root -e "CREATE TABLE IF NOT EXISTS $table4; USE $table4"
+
+/opt/lampp/bin/mysql -u root -e "\
+CREATE TABLE IF NOT EXISTS $table1;\
+CREATE TABLE IF NOT EXISTS $table2;\
+CREATE TABLE IF NOT EXISTS $table3;\
+CREATE TABLE IF NOT EXISTS $table4;\
+USE $table1;
+USE $table2;
+USE $table3;
+USE $table4;

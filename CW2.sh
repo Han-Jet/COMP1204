@@ -56,3 +56,16 @@ echo "$secondDose" | sed 's/%//g'
 clean_code '<span class="leading-4" data-v-1e2a93af data-v-91d5f596>Booster</span>' 1
 booster=$tempCode
 echo "$booster" | sed 's/%//g'
+#Create table script
+db="covidnow"
+
+/opt/lampp/bin/mysql -u root<<EOF
+	CREATE DATABASE IF NOT EXISTS $db;
+	USE $db;
+EOF
+
+/opt/lampp/bin/mysql -u root -e "CREATE DATABASE IF NOT EXISTS $db; USE $db"
+
+/opt/lampp/bin/mysql -u root -e "\
+CREATE DATABASE IF NOT EXISTS $db;\
+USE $db"

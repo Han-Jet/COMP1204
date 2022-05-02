@@ -1,7 +1,7 @@
 #!/bin/bash
 
 html=$(curl --silent https://covidnow.moh.gov.my/)
-echo "HTML: $html"
+#echo "HTML: $html"
 
 clean_code() {
 	tempCode=$(echo "$html" | grep "$1" -A"$2" | cut -d ">" -f 1 | sed -n 2p | xargs | sed 's/[+,]//g')
@@ -10,51 +10,52 @@ clean_code() {
 
 clean_code '<span class="font-bold text-xl lg:text-2xl" data-v-1e2a93af data-v-91d5f596>' 1
 dailyVaccine=$tempCode
-echo "$dailyVaccine"
+echo "dailyVaccine: $dailyVaccine"
 clean_code '<span data-v-1e2a93af data-v-3ab42af2>Daily - Cases</span>' 1
 dailyCases=$tempCode
-echo "$dailyCases"
+echo "dailyCases: $dailyCases"
 clean_code '<span data-v-1e2a93af data-v-3ab42af2>Daily - Tests</span>' 1
 dailyTests=$tempCode
-echo "$dailyTests"
-recoverCases=$(echo "$html" | grep "Recovered" -A4 | tail -n 1 | xargs)
-echo "$recoverCases" | sed 's/[,]//g'
+echo "dailyTests: $dailyTests"
+clean_code '<span data-v-1e2a93af data-v-3ab42af2>Positivity Rate</span>' 1
+positiveRate=$(echo "$tempCode" | sed 's/%//g')
+echo "positiveRate: $positiveRate"
 dailyDeath=$(echo "$html" | grep "Deaths due to COVID" -A2 | tail -n 1 | xargs)
-echo "$dailyDeath" | sed 's/[+]//g'
+echo "dailyDeath: $dailyDeath" | sed 's/[+]//g'
 clean_code '<span data-v-1e2a93af data-v-3ab42af2>Active - ICU</span>' 1
 activeICU=$tempCode
-echo "$activeICU"
+echo "activeICU: $activeICU"
 clean_code '<span data-v-1e2a93af data-v-3ab42af2>Utilisation (COVID)</span>' 1
 icuUtilisation=$tempCode
-echo "$icuUtilisation" | sed 's/%//g'
+echo "icuUtilisation: $icuUtilisation" | sed 's/%//g'
 clean_code '<span data-v-1e2a93af data-v-3ab42af2>Total - Cases</span>' 1
 totalCase=$tempCode
-echo "$totalCase"
+echo "totalCase: $totalCase"
 date=$(echo "$html" | grep 'Data as of' -A2 | tail -n 2 | head -n 1 | sed 's/[,]//g' | xargs)
-echo "$date"
+echo "date: $date"
 clean_code '<span data-v-1e2a93af data-v-3ab42af2>Total - Deaths</span>' 1
 totalDeaths=$tempCode
-echo "$totalDeaths"
+echo "totalDeaths: $totalDeaths"
 clean_code '<div class="bg-blue-100 px-2 m-auto">' 1
 activeCases=$tempCode
-echo "$activeCases"
+echo "activeCases: $activeCases"
 dailyHospital=$(echo "$html" | grep "Daily - Admissions" -A2 | tail -n 1 | xargs)
-echo "$dailyHospital"
+echo "dailyHospital: $dailyHospital"
 dailyBid=$(echo "$html" | grep "Brought in Dead" -A8 | tail -n 1 | xargs)
-echo "$dailyBid" | sed 's/[+]//g'
+echo "dailyBid: $dailyBid" | sed 's/[+]//g'
 totalBid=$(echo "$html" | grep "Brought in Dead" -A4 | tail -n 1 | xargs)
-echo "$totalBid" | sed 's/[,]//g'
+echo "totalBid: $totalBid" | sed 's/[,]//g'
 totalVaccine=$(echo "$html" | grep "Total - Administered" -A2 | tail -n 1 | xargs)
-echo "$totalVaccine" | sed 's/[,]//g'
+echo "totalVaccine: $totalVaccine" | sed 's/[,]//g'
 clean_code '<span class="leading-4" data-v-1e2a93af data-v-91d5f596>At Least 1 Dose</span>' 1
 firstDose=$tempCode
-echo "$firstDose" | sed 's/%//g'
+echo "firstDose: $firstDose" | sed 's/%//g'
 clean_code '<span class="leading-4" data-v-1e2a93af data-v-91d5f596>2 Doses</span>' 1
 secondDose=$tempCode
-echo "$secondDose" | sed 's/%//g'
+echo "secondDose: $secondDose" | sed 's/%//g'
 clean_code '<span class="leading-4" data-v-1e2a93af data-v-91d5f596>Booster</span>' 1
 booster=$tempCode
-echo "$booster" | sed 's/%//g'
+echo "booster: $booster" | sed 's/%//g'
 #Create table script
 db="covidnow"
 table1="cases"
@@ -71,8 +72,8 @@ table4="death"
 		new_cases int,\
 		total_cases int,\
 		daily_tests int,\
+		positivity_rate decimal(10,2),\
 		active_cases int,\
-		recovered int,\
 		updated_time datetime,\
 		PRIMARY KEY (case_id)\
 	);\
@@ -82,9 +83,9 @@ table4="death"
 		date varchar(20),\
 		daily_administered int,\
 		total_administered int,\
-		first_dose DECIMAL(4,2),\
-		two_doses DECIMAL(4,2),\
-		booster DECIMAL(4,2),\
+		first_dose decimal(10,2),\
+		two_doses decimal(10,2),\
+		booster decimal(10,2),\
 		updated_time datetime,\
 		PRIMARY KEY (vac_id)\
 	);\
@@ -113,8 +114,8 @@ table4="death"
 		PRIMARY KEY (death_id)\
 	);\
 	
-	INSERT INTO $table1 (case_id, date, new_cases, total_cases, daily_tests, active_cases, recovered, updated_time)\
-	VALUES (001, '$date', $dailyCases, $totalCase, $dailyTests, $positiveRate, $activeCases, $recoverCases, NOW());\
+	INSERT INTO $table1 (date, new_cases, total_cases, daily_tests, positivity_rate, active_cases, updated_time)
+	VALUES ('$date', $dailyCases, $totalCase, $dailyTests, '$positiveRate', $activeCases, NOW());\
 	
 	SELECT * FROM $table1;\
 	SELECT * FROM $table2;\

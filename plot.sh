@@ -19,8 +19,9 @@ set xtics 24*60*60
 set xdata time; set timefmt '%d %B %Y'; set format x '%d/%m'
 set terminal png font 'Barlow'
 set terminal png size 2160,1080
+set style line 1 linecolor rgb "#FF8000"
 set output "$HOME/cases.png"
-plot "$cases_file" using 2:5 with lines notitle
+plot "$cases_file" using 2:5 with lines title "Daily Cases" linestyle 1
 
 EOF
 

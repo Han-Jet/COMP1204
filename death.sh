@@ -23,7 +23,7 @@ set terminal png font 'Barlow'
 set terminal png size 2160,1080
 set style line 1 linecolor rgb "#FF8000"
 set output "$HOME/death.png" #show the graph in .png format 
-plot "$death_file" using 2:5 with lines title "Daily Death" linestyle 1, "$death_file" using 2:7 with lines titel "Daily Brought in Dead" linestyle 2
+plot "$death_file" using 2:5 with lines title "Daily Death" linestyle 1, "$death_file" using 2:7 with lines title "Daily Brought in Dead" linestyle 2
 
 EOF
 

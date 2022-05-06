@@ -23,7 +23,7 @@ set terminal png font 'Barlow'
 set terminal png size 2160,1080
 set style line 1 linecolor rgb "#FF8000"
 set output "$HOME/cases.png" #show the graph in .png format 
-plot "$cases_file" using 2:5 with lines title "Daily Cases" linestyle 1 #plot the graph by specifying the line of column
+plot "$cases_file" using 2:5 with lines title "Daily Cases" linestyle 1 
 
 EOF
 

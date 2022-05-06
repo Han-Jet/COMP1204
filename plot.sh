@@ -16,7 +16,9 @@ set title "Graph for daily cases"
 set xlabel "Date"
 set ylabel "Cases"
 set xtics 24*60*60
-set xdata time; set timefmt '%d %B %Y'; set format x '%d/%m' #time format in .dat file #the time format to be displayed in the graph
+set xdata time
+set timefmt '%d %B %Y'  #time format in the .dat file
+set format x '%d/%m'    #the time format to be displayed in the graph
 set terminal png font 'Barlow'
 set terminal png size 2160,1080
 set style line 1 linecolor rgb "#FF8000"
